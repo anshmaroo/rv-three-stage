@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "/usr/local/Cellar/verilator/5.036/share/verilator/include/verilated.h"
+#include "verilated.h"
 #include "VPipeline.h"
 
 int main(int argc, char** argv) {
