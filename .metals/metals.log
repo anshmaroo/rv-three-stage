@@ -1,0 +1,5 @@
+2025.05.01 12:23:59 INFO  Started: Metals version 1.5.2 in folders '/Users/amaroo/Desktop/chisel/rv-three-stage' for client Visual Studio Code 1.99.3.
+May 01, 2025 12:25:09 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+May 01, 2025 12:51:25 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
