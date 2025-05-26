@@ -8,7 +8,7 @@ class IMEM(w: Int) extends Module{
   })
 
   val imem = Mem(w, UInt(32.W))
-  loadMemoryFromFile(imem, "test.riscv")
+  loadMemoryFromFile(imem, "test.hex")
   io.instruction := imem(io.addr >> 2.U)
   //  println(io.instruction.litValue)
 }

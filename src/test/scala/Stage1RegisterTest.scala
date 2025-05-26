@@ -9,9 +9,9 @@ class Stage1RegisterTest extends AnyFlatSpec {
       c.reset.poke(1)
       c.clock.step(1)
       c.reset.poke(0)
-      c.io.instructionIn.poke(0x00210183)
+      c.io.instructionIn.poke(0xd00093)
       c.clock.step(1)
-      c.io.memAccessLength.expect(1)
+      c.io.aluSel.expect(0)
 
     }
 

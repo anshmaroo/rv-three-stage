@@ -17,6 +17,7 @@ VPipeline::VPipeline(VerilatedContext* _vcontextp__, const char* _vcname__)
     , io_debugRegWEn{vlSymsp->TOP.io_debugRegWEn}
     , io_debugRD{vlSymsp->TOP.io_debugRD}
     , io_debugMemAccessLength{vlSymsp->TOP.io_debugMemAccessLength}
+    , io_debugCsrWEn{vlSymsp->TOP.io_debugCsrWEn}
     , io_pcOut{vlSymsp->TOP.io_pcOut}
     , io_debugRegs_0{vlSymsp->TOP.io_debugRegs_0}
     , io_debugRegs_1{vlSymsp->TOP.io_debugRegs_1}
@@ -51,9 +52,15 @@ VPipeline::VPipeline(VerilatedContext* _vcontextp__, const char* _vcname__)
     , io_debugRegs_30{vlSymsp->TOP.io_debugRegs_30}
     , io_debugRegs_31{vlSymsp->TOP.io_debugRegs_31}
     , io_debugInstruction{vlSymsp->TOP.io_debugInstruction}
+    , io_debugImmediate{vlSymsp->TOP.io_debugImmediate}
     , io_debugAddress{vlSymsp->TOP.io_debugAddress}
+    , io_debugAluResult{vlSymsp->TOP.io_debugAluResult}
     , io_debugMemData{vlSymsp->TOP.io_debugMemData}
     , io_debugMemWriteData{vlSymsp->TOP.io_debugMemWriteData}
+    , io_debugCsr{vlSymsp->TOP.io_debugCsr}
+    , io_debugRS1Data{vlSymsp->TOP.io_debugRS1Data}
+    , io_debugRS2Data{vlSymsp->TOP.io_debugRS2Data}
+    , io_debugCsrWdData{vlSymsp->TOP.io_debugCsrWdData}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

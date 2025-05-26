@@ -12,6 +12,7 @@ class ImmGen(xlen: Int) extends Module {
   val bTypeImmediate = Cat(Fill(19, io.instruction(31)), io.instruction(7), io.instruction(30, 25), io.instruction(11, 8), "b0".U(1.W)).asSInt
   val uTypeImmediate = Cat(io.instruction(31, 12), 0.U(12.W)).asSInt
   val jTypeImmediate = Cat(Fill(11, io.instruction(31)), io.instruction(19, 12), io.instruction(20), io.instruction(30, 21), "b0".U(1.W)).asSInt
+  val csrTypeImmediate = Cat(Fill(5, io.instruction(19, 15))).asSInt
 
   val immediate = Wire(SInt(xlen.W))
   val opcode = io.instruction(6, 0)
@@ -49,6 +50,10 @@ class ImmGen(xlen: Int) extends Module {
     is(0b1100111.U) {
       // i-type
       immediate := iTypeImmediate
+    }
+    is(0b1110011.U) {
+      // csr type
+      immediate := csrTypeImmediate
     }
   }
 

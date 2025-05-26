@@ -10,9 +10,9 @@ class Stage1Register(xlen: Int) extends Module {
 
     val instruction = Output(UInt(32.W))
     val pc = Output(UInt(xlen.W))
-    val rs1 = Output(UInt((log(xlen)/log(2)).toInt.W))
-    val rs2 = Output(UInt((log(xlen)/log(2)).toInt.W))
-    val rd = Output(UInt((log(xlen)/log(2)).toInt.W))
+    val rs1 = Output(UInt((5.W)))
+    val rs2 = Output(UInt((5.W)))
+    val rd = Output(UInt((5.W)))
 
     val immediate = Output(UInt(xlen.W))
 
@@ -33,6 +33,9 @@ class Stage1Register(xlen: Int) extends Module {
     val memAccessLength = Output(UInt((log(xlen / 8)/log(2) + 1).toInt.W))
     val memReadMode = Output(Bool())
     val memWriteMask = Output(UInt(xlen.W))
+
+    val csrOffset = Output(UInt(12.W))
+    val csrWEn = Output(Bool())
   })
 
   val opcode = io.instructionIn(6, 0)
@@ -42,9 +45,9 @@ class Stage1Register(xlen: Int) extends Module {
 
   val instruction = RegInit(0.U(xlen.W))
   val pc = RegInit(0.U(xlen.W))
-  val rs1 = RegInit(0.U((log(xlen)/log(2)).toInt.W))
-  val rs2 = RegInit(0.U((log(xlen)/log(2)).toInt.W))
-  val rd = RegInit(0.U((log(xlen)/log(2)).toInt.W))
+  val rs1 = RegInit(0.U((5.W)))
+  val rs2 = RegInit(0.U((5.W)))
+  val rd = RegInit(0.U((5.W)))
   val immediate = RegInit(0.U(xlen.W))
   val aluSel = RegInit(0.U(4.W))
   val aSel = RegInit(0.U(1.W))
@@ -59,6 +62,8 @@ class Stage1Register(xlen: Int) extends Module {
   val memAccessLength = RegInit(0.U((log(xlen / 8)/log(2) + 1).toInt.W))
   val memReadMode = RegInit(0.U(1.W))
   val memWriteMask = RegInit(0.U(xlen.W))
+  val csrOffset = RegInit(0.U(12.W))
+  val csrWEn = RegInit(0.U(1.W))
 
   // instruction
   instruction := io.instructionIn
@@ -78,6 +83,12 @@ class Stage1Register(xlen: Int) extends Module {
     }
     is (0b1100011.U) {
       regWEn := false.B
+    }
+    is (0b1110011.U) {
+      // csr type
+      when (rd === 0.U) {
+        regWEn := false.B
+      }
     }
   }
 
@@ -110,6 +121,10 @@ class Stage1Register(xlen: Int) extends Module {
     is(0b0110111.U) {
       // u-type
       wbSel := 1.U
+    }
+    is(0b1110011.U) {
+      // csr type
+      wbSel := 3.U;
     }
   }
 
@@ -158,6 +173,7 @@ class Stage1Register(xlen: Int) extends Module {
       }
     }
   } .elsewhen (opcode === 0b0010011.U) {
+    // i-types
     switch (funct3) {
       is(0b000.U) {
         aluSel := 0.U
@@ -238,6 +254,12 @@ class Stage1Register(xlen: Int) extends Module {
       // i-type (jump)
       bSel := true.B
     }
+    is(0b1110011.U) {
+      // csr type
+      when(funct3(2) === 1.U) {
+        bSel := true.B
+      }
+    }
   }
 
   // branches
@@ -274,9 +296,12 @@ class Stage1Register(xlen: Int) extends Module {
   val numBytes = (1.U << funct3)
   memWriteMask := (-1).S.pad(xlen).asUInt
 
-
   memReadMode := ~funct3(2)
   memAccessLength := (1.U << (funct3 & 0x3.U))
+
+  // csr
+  csrOffset := instruction(31, 20)
+  csrWEn := (opcode === 0b1110011.U) & (funct3 === 0b001.U | funct3 === 0b101.U)
 
   // set all outputs
   io.instruction := instruction
@@ -298,4 +323,6 @@ class Stage1Register(xlen: Int) extends Module {
   io.memAccessLength := memAccessLength
   io.memReadMode := memReadMode
   io.memWriteMask := memWriteMask
+  io.csrOffset := csrOffset
+  io.csrWEn := csrWEn
 }

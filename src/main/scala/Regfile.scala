@@ -4,9 +4,9 @@ import scala.math._
 
 class Regfile(xlen: Int) extends Module {
   val io = IO(new Bundle {
-    val rdIndex0 = Input(UInt((log(xlen)/log(2)).toInt.W));
-    val rdIndex1 = Input(UInt((log(xlen)/log(2)).toInt.W));
-    val wdIndex = Input(UInt((log(xlen)/log(2)).toInt.W));
+    val rdIndex0 = Input(UInt(5.W));
+    val rdIndex1 = Input(UInt(5.W));
+    val wdIndex = Input(UInt(5.W));
     val wdEn = Input(Bool());
     val wdData = Input(UInt(xlen.W));
 

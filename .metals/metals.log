@@ -3,3 +3,25 @@ May 01, 2025 12:25:09 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint noti
 INFO: Unsupported notification method: $/setTrace
 May 01, 2025 12:51:25 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+2025.05.04 17:22:36 INFO  Shutting down server
+2025.05.04 17:22:36 INFO  shutting down Metals
+2025.05.04 17:22:36 INFO  Exiting server
+2025.05.04 17:22:37 ERROR Unexpected error initializing server: 
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:220)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:204)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:840)
+
+2025.05.25 10:07:49 INFO  Started: Metals version 1.5.3 in folders '/Users/amaroo/Desktop/chisel/rv-three-stage' for client Visual Studio Code 1.100.0.
+2025.05.25 13:49:23 INFO  Shutting down server
+2025.05.25 13:49:23 INFO  shutting down Metals
+2025.05.25 13:49:23 INFO  Exiting server
+2025.05.25 13:50:28 INFO  Started: Metals version 1.5.3 in folders '/Users/amaroo/Desktop/chisel/rv-three-stage' for client Visual Studio Code 1.100.0.
+2025.05.25 19:05:27 INFO  Started: Metals version 1.5.3 in folders '/Users/amaroo/Desktop/chisel/rv-three-stage' for client Visual Studio Code 1.100.2.

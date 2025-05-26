@@ -36,6 +36,7 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline VL_NOT_FINAL : public VerilatedMode
     VL_OUT8(&io_debugRegWEn,0,0);
     VL_OUT8(&io_debugRD,4,0);
     VL_OUT8(&io_debugMemAccessLength,2,0);
+    VL_OUT8(&io_debugCsrWEn,0,0);
     VL_OUT(&io_pcOut,31,0);
     VL_OUT(&io_debugRegs_0,31,0);
     VL_OUT(&io_debugRegs_1,31,0);
@@ -70,9 +71,15 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline VL_NOT_FINAL : public VerilatedMode
     VL_OUT(&io_debugRegs_30,31,0);
     VL_OUT(&io_debugRegs_31,31,0);
     VL_OUT(&io_debugInstruction,31,0);
+    VL_OUT(&io_debugImmediate,31,0);
     VL_OUT(&io_debugAddress,31,0);
+    VL_OUT(&io_debugAluResult,31,0);
     VL_OUT(&io_debugMemData,31,0);
     VL_OUT(&io_debugMemWriteData,31,0);
+    VL_OUT(&io_debugCsr,31,0);
+    VL_OUT(&io_debugRS1Data,31,0);
+    VL_OUT(&io_debugRS2Data,31,0);
+    VL_OUT(&io_debugCsrWdData,31,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

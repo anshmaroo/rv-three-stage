@@ -24,15 +24,12 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         VL_OUT8(io_debugRegWEn,0,0);
         VL_OUT8(io_debugRD,4,0);
         VL_OUT8(io_debugMemAccessLength,2,0);
+        VL_OUT8(io_debugCsrWEn,0,0);
         CData/*0:0*/ Pipeline__DOT___pc_T_2;
         CData/*0:0*/ Pipeline__DOT___pc_T_3;
-        CData/*0:0*/ Pipeline__DOT____VdfgRegularize_h5e5eb77f_0_0;
+        CData/*0:0*/ Pipeline__DOT____VdfgRegularize_h5e5eb77f_0_2;
         CData/*0:0*/ Pipeline__DOT__branchComparator__DOT___GEN;
         CData/*0:0*/ Pipeline__DOT__DMEM__DOT___GEN;
-        CData/*7:0*/ Pipeline__DOT__DMEM__DOT__dmem_ext__DOT____Vlvbound_h0a982109__0;
-        CData/*7:0*/ Pipeline__DOT__DMEM__DOT__dmem_ext__DOT____Vlvbound_h41b8a8af__0;
-        CData/*7:0*/ Pipeline__DOT__DMEM__DOT__dmem_ext__DOT____Vlvbound_h462a8411__0;
-        CData/*7:0*/ Pipeline__DOT__DMEM__DOT__dmem_ext__DOT____Vlvbound_h624d58fc__0;
         CData/*4:0*/ Pipeline__DOT__stage1Register__DOT__rs1;
         CData/*4:0*/ Pipeline__DOT__stage1Register__DOT__rs2;
         CData/*4:0*/ Pipeline__DOT__stage1Register__DOT__rd;
@@ -48,6 +45,7 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__memRWSel;
         CData/*2:0*/ Pipeline__DOT__stage1Register__DOT__memAccessLength;
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__memReadMode;
+        CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__csrWEn;
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN;
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_0;
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_1;
@@ -57,8 +55,11 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_5;
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_6;
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_7;
-        IData/*31:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_8;
-        CData/*3:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_9;
+        CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_8;
+        CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_9;
+        CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_10;
+        IData/*31:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_11;
+        CData/*3:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_12;
         CData/*7:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___memAccessLength_T_1;
         CData/*4:0*/ Pipeline__DOT__stage2Register__DOT__rd;
         CData/*0:0*/ Pipeline__DOT__stage2Register__DOT__regWEn;
@@ -68,6 +69,7 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         CData/*2:0*/ Pipeline__DOT__stage2Register__DOT__memAccessLength;
         CData/*0:0*/ Pipeline__DOT__stage2Register__DOT__memReadMode;
         CData/*0:0*/ Pipeline__DOT__stage2Register__DOT__branchTaken;
+        CData/*0:0*/ Pipeline__DOT__stage2Register__DOT__csrWEn;
         CData/*0:0*/ __VstlFirstIteration;
         CData/*0:0*/ __Vtrigprevexpr___TOP__clock__0;
         CData/*0:0*/ __VactContinue;
@@ -78,10 +80,10 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         VL_OUT(io_debugRegs_3,31,0);
         VL_OUT(io_debugRegs_4,31,0);
         VL_OUT(io_debugRegs_5,31,0);
-        VL_OUT(io_debugRegs_6,31,0);
-        VL_OUT(io_debugRegs_7,31,0);
     };
     struct {
+        VL_OUT(io_debugRegs_6,31,0);
+        VL_OUT(io_debugRegs_7,31,0);
         VL_OUT(io_debugRegs_8,31,0);
         VL_OUT(io_debugRegs_9,31,0);
         VL_OUT(io_debugRegs_10,31,0);
@@ -107,14 +109,20 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         VL_OUT(io_debugRegs_30,31,0);
         VL_OUT(io_debugRegs_31,31,0);
         VL_OUT(io_debugInstruction,31,0);
+        VL_OUT(io_debugImmediate,31,0);
         VL_OUT(io_debugAddress,31,0);
+        VL_OUT(io_debugAluResult,31,0);
         VL_OUT(io_debugMemData,31,0);
         VL_OUT(io_debugMemWriteData,31,0);
+        VL_OUT(io_debugCsr,31,0);
+        VL_OUT(io_debugRS1Data,31,0);
+        VL_OUT(io_debugRS2Data,31,0);
+        VL_OUT(io_debugCsrWdData,31,0);
         IData/*31:0*/ Pipeline__DOT___immGen_io_out;
-        IData/*31:0*/ Pipeline__DOT___regfile_io_rd0;
-        IData/*31:0*/ Pipeline__DOT___regfile_io_rd1;
         IData/*31:0*/ Pipeline__DOT__pc;
         IData/*31:0*/ Pipeline__DOT____Vcellinp__regfile__io_wdData;
+        IData/*31:0*/ Pipeline__DOT____Vcellinp__branchComparator__io_in1;
+        IData/*31:0*/ Pipeline__DOT____Vcellinp__branchComparator__io_in0;
         IData/*31:0*/ Pipeline__DOT____Vcellinp__alu__io_in1;
         IData/*31:0*/ Pipeline__DOT____Vcellinp__alu__io_in0;
         IData/*31:0*/ Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn;
@@ -138,6 +146,8 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_18;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_19;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_20;
+    };
+    struct {
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_21;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_22;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_23;
@@ -146,8 +156,6 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_26;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_27;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_28;
-    };
-    struct {
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_29;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_30;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_31;
@@ -157,11 +165,14 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         IData/*31:0*/ Pipeline__DOT__stage1Register__DOT__immediate;
         IData/*31:0*/ Pipeline__DOT__stage2Register__DOT__instruction;
         IData/*31:0*/ Pipeline__DOT__stage2Register__DOT__pc;
+        IData/*31:0*/ Pipeline__DOT__stage2Register__DOT__immediate;
         IData/*31:0*/ Pipeline__DOT__stage2Register__DOT__aluResult;
+        IData/*31:0*/ Pipeline__DOT__stage2Register__DOT__rs1Data;
         IData/*31:0*/ Pipeline__DOT__stage2Register__DOT__rs2Data;
+        IData/*31:0*/ Pipeline__DOT__csrs__DOT__reg_0;
         IData/*31:0*/ __VactIterCount;
-        VlUnpacked<IData/*31:0*/, 1000> Pipeline__DOT__IMEM__DOT__imem_ext__DOT__Memory;
-        VlUnpacked<CData/*7:0*/, 1000> Pipeline__DOT__DMEM__DOT__dmem_ext__DOT__Memory;
+        VlUnpacked<IData/*31:0*/, 4096> Pipeline__DOT__IMEM__DOT__imem_ext__DOT__Memory;
+        VlUnpacked<CData/*7:0*/, 4096> Pipeline__DOT__DMEM__DOT__dmem_ext__DOT__Memory;
     };
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<1> __VactTriggered;

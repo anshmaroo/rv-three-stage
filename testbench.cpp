@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "verilated.h"
 #include "VPipeline.h"
+#include "verilated.h"
 
 int main(int argc, char** argv) {
     Verilated::commandArgs(argc, argv);
@@ -19,26 +19,30 @@ int main(int argc, char** argv) {
     top->reset = 0;
 
     // Run for 6 cycles
-    for (int cycle = 0; cycle < 50; cycle++) {
+    int cycle = 0;
+    while ((int) top->io_debugCsr == 0) {
         // Optional: Print PC, regs, etc.
         std::cout << "Cycle " << std::hex << cycle
                   << ", PC = " << std::hex << top->io_pcOut
                   << ", Instruction = " << std::hex << top->io_debugInstruction
-                  << ", Branch Taken = " << std::hex << (int) top->io_debugBranchTaken
-                  << ", Load = " << std::hex << (int) top->io_debugLoad
-                  << ", Store = " << std::hex << (int) top->io_debugStore
-                  << ", Address = " << std::hex << (int) top->io_debugAddress
-                  << ", Register Write Enable = " << std::hex << (int) top->io_debugRegWEn
-                  << ", Destination Register = " << std::hex << (int) top->io_debugRD
-                  << ", Memory Read Data = " << std::hex << (int) top->io_debugMemData
-                  << ", Memory Access Length = " << std::hex << (int) top->io_debugMemAccessLength
-                  << ", Memory Write Data = " << std::hex << (int) top->io_debugMemWriteData
+                  << ", Immediate = " << std::hex << top->io_debugImmediate
+                  << ", Destination register = " << std::hex << (int) top->io_debugRD
+                  << ", ALU result = " << std::hex << (int) top->io_debugAluResult
+                  << ", End CSR = " << std::hex << top->io_debugCsr 
+                  << ", rs1Data = " << std::hex << top->io_debugRS1Data
+                  << ", rs2Data = " << std::hex << top->io_debugRS2Data
+                  << ", csr write = " << std::hex << (int) top->io_debugCsrWEn
+                  << ", csr write data = " << std::hex << (int) top->io_debugCsrWdData
                   << std::endl;
+        
 
         top->clock = 0;
         top->eval();
         top->clock = 1;
         top->eval();
+        cycle++;
+
+        std::cout << "\tRegister 0: " << top->io_debugRegs_0 << std::endl;
         std::cout << "\tRegister 1: " << top->io_debugRegs_1 << std::endl;
         std::cout << "\tRegister 2: " << top->io_debugRegs_2 << std::endl;
         std::cout << "\tRegister 3: " << top->io_debugRegs_3 << std::endl;
@@ -70,12 +74,7 @@ int main(int argc, char** argv) {
         std::cout << "\tRegister 29: " << top->io_debugRegs_29 << std::endl;
         std::cout << "\tRegister 30: " << top->io_debugRegs_30 << std::endl;
         std::cout << "\tRegister 31: " << top->io_debugRegs_31 << std::endl;
-        do 
-        {
-        std::cout << '\n' << "";
-        } while (std::cin.get() != '\n');
     }
-
 
     top->final();
     delete top;
