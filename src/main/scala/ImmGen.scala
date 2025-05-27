@@ -23,6 +23,10 @@ class ImmGen(xlen: Int) extends Module {
       // i-type (arithmetic)
       immediate := iTypeImmediate
     }
+    is(0b0011011.U) {
+      // i-type (wide)
+      immediate := iTypeImmediate
+    }
     is(0b0000011.U) {
       // i-type (loads)
       immediate := iTypeImmediate

@@ -58,8 +58,11 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_8;
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_9;
         CData/*0:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_10;
-        IData/*31:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_11;
+        CData/*3:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_11;
         CData/*3:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_12;
+        IData/*31:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_13;
+        CData/*3:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_14;
+        CData/*3:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_15;
         CData/*7:0*/ Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___memAccessLength_T_1;
         CData/*4:0*/ Pipeline__DOT__stage2Register__DOT__rd;
         CData/*0:0*/ Pipeline__DOT__stage2Register__DOT__regWEn;
@@ -77,11 +80,11 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         VL_OUT(io_debugRegs_0,31,0);
         VL_OUT(io_debugRegs_1,31,0);
         VL_OUT(io_debugRegs_2,31,0);
+    };
+    struct {
         VL_OUT(io_debugRegs_3,31,0);
         VL_OUT(io_debugRegs_4,31,0);
         VL_OUT(io_debugRegs_5,31,0);
-    };
-    struct {
         VL_OUT(io_debugRegs_6,31,0);
         VL_OUT(io_debugRegs_7,31,0);
         VL_OUT(io_debugRegs_8,31,0);
@@ -143,11 +146,11 @@ class alignas(VL_CACHE_LINE_BYTES) VPipeline___024root final : public VerilatedM
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_15;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_16;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_17;
+    };
+    struct {
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_18;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_19;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_20;
-    };
-    struct {
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_21;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_22;
         IData/*31:0*/ Pipeline__DOT__regfile__DOT__regs_23;

@@ -61,7 +61,7 @@ VL_ATTR_COLD void VPipeline___024root___eval_settle(VPipeline___024root* vlSelf)
 #ifdef VL_DEBUG
             VPipeline___024root___dump_triggers__stl(vlSelf);
 #endif
-            VL_FATAL_MT("generated/Pipeline.sv", 963, "", "Settle region did not converge.");
+            VL_FATAL_MT("generated/Pipeline.sv", 981, "", "Settle region did not converge.");
         }
         __VstlIterCount = ((IData)(1U) + __VstlIterCount);
         __VstlContinue = 0U;
@@ -393,8 +393,10 @@ VL_ATTR_COLD void VPipeline___024root___stl_sequent__TOP__0(VPipeline___024root*
                                              & VL_SHIFTL_III(7,7,32, (IData)(vlSelfRef.Pipeline__DOT__stage2Register__DOT__wbSel), 5U))));
     vlSelfRef.Pipeline__DOT___immGen_io_out = (((0x13U 
                                                  == (IData)(Pipeline__DOT__immGen__DOT____VdfgRegularize_h8d16997b_0_2)) 
-                                                | (3U 
-                                                   == (IData)(Pipeline__DOT__immGen__DOT____VdfgRegularize_h8d16997b_0_2)))
+                                                | ((0x1bU 
+                                                    == (IData)(Pipeline__DOT__immGen__DOT____VdfgRegularize_h8d16997b_0_2)) 
+                                                   | (3U 
+                                                      == (IData)(Pipeline__DOT__immGen__DOT____VdfgRegularize_h8d16997b_0_2))))
                                                 ? Pipeline__DOT__immGen__DOT___iTypeImmediate_T_3
                                                 : (
                                                    (0x23U 
@@ -757,8 +759,11 @@ VL_ATTR_COLD void VPipeline___024root___ctor_var_reset(VPipeline___024root* vlSe
     vlSelf->Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_8 = VL_RAND_RESET_I(1);
     vlSelf->Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_9 = VL_RAND_RESET_I(1);
     vlSelf->Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_10 = VL_RAND_RESET_I(1);
-    vlSelf->Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_11 = VL_RAND_RESET_I(32);
+    vlSelf->Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_11 = VL_RAND_RESET_I(4);
     vlSelf->Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_12 = VL_RAND_RESET_I(4);
+    vlSelf->Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_13 = VL_RAND_RESET_I(32);
+    vlSelf->Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_14 = VL_RAND_RESET_I(4);
+    vlSelf->Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_15 = VL_RAND_RESET_I(4);
     vlSelf->Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___memAccessLength_T_1 = VL_RAND_RESET_I(8);
     vlSelf->Pipeline__DOT__stage2Register__DOT__instruction = VL_RAND_RESET_I(32);
     vlSelf->Pipeline__DOT__stage2Register__DOT__pc = VL_RAND_RESET_I(32);

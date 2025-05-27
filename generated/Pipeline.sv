@@ -343,7 +343,8 @@ module ImmGen(	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/ImmG
 
   wire [31:0] _iTypeImmediate_T_3 = {{20{io_instruction[31]}}, io_instruction[31:20]};	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/ImmGen.scala:10:{27,32,51,72}
   assign io_out =
-    io_instruction[6:0] == 7'h13 | io_instruction[6:0] == 7'h3
+    io_instruction[6:0] == 7'h13 | io_instruction[6:0] == 7'h1B
+    | io_instruction[6:0] == 7'h3
       ? _iTypeImmediate_T_3
       : io_instruction[6:0] == 7'h23
           ? {{20{io_instruction[31]}}, io_instruction[31:25], io_instruction[11:7]}
@@ -367,7 +368,7 @@ module ImmGen(	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/ImmG
                               ? {{7{io_instruction[19]}},
                                  io_instruction[19:15],
                                  {2{{2{io_instruction[19:15]}}}}}
-                              : 32'h0;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/ImmGen.scala:4:7, :10:{27,51}, :11:{27,32,72,96}, :12:{72,91,115}, :13:{27,42}, :14:{72,96,116}, :15:{34,52}, :18:30, :20:13, :21:19, :24:17, :28:17, :32:17, :36:17, :40:17, :44:17, :48:17, :52:17, :56:17
+                              : 32'h0;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/ImmGen.scala:4:7, :10:{27,51}, :11:{27,32,72,96}, :12:{72,91,115}, :13:{27,42}, :14:{72,96,116}, :15:{34,52}, :18:30, :20:13, :21:19, :24:17, :28:17, :32:17, :36:17, :40:17, :44:17, :48:17, :52:17, :56:17, :60:17
 endmodule
 
 module BranchComparator(	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/BranchComparator.scala:3:7
@@ -690,17 +691,16 @@ module Stage1Register(	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/sc
       automatic logic            _GEN_8 = io_instructionIn[6:0] == 7'h37;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:42:32, :98:19
       automatic logic            _GEN_9 = _GEN_5 | _GEN_6;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:98:19, :113:13, :117:13
       automatic logic            _GEN_10 = io_instructionIn[14:12] == 3'h0;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:5:7, :43:32, :143:21
-      automatic logic [7:0][3:0] _GEN_11 =
-        {{4'h8},
-         {4'h7},
-         {io_instructionIn[30] ? 4'h4 : 4'h3},
-         {4'h9},
-         {4'h6},
-         {4'h5},
-         {4'h2},
-         {4'h0}};	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:44:35, :137:10, :143:21, :152:16, :155:16, :158:16, :161:16, :164:26, :165:18, :167:18, :171:16, :174:16
-      automatic logic [3:0]      _GEN_12 = _GEN_11[io_instructionIn[14:12]];	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:43:32, :137:10, :143:21, :152:16, :155:16, :158:16, :161:16, :164:26, :171:16, :174:16
-      automatic logic [7:0]      _memAccessLength_T_1 = 8'h1 << io_instructionIn[13:12];	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:43:32, :304:{27,38}
+      automatic logic [3:0]      _GEN_11 = {3'h0, io_instructionIn[30]};	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:5:7, :44:35, :145:26, :146:18, :148:18
+      automatic logic [3:0]      _GEN_12 = io_instructionIn[30] ? 4'h4 : 4'h3;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:44:35, :164:26, :165:18, :167:18
+      automatic logic [7:0][3:0] _GEN_13 =
+        {{4'h8}, {4'h7}, {_GEN_12}, {4'h9}, {4'h6}, {4'h5}, {4'h2}, {4'h0}};	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:137:10, :143:21, :152:16, :155:16, :158:16, :161:16, :164:26, :165:18, :167:18, :171:16, :174:16
+      automatic logic [3:0]      _GEN_14 = _GEN_13[io_instructionIn[14:12]];	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:43:32, :137:10, :143:21, :152:16, :155:16, :158:16, :161:16, :164:26, :171:16, :174:16
+      automatic logic [3:0]      _GEN_15 =
+        io_instructionIn[14:12] == 3'h1
+          ? 4'h2
+          : io_instructionIn[14:12] == 3'h5 ? _GEN_12 : 4'h0;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:5:7, :43:32, :137:10, :143:21, :164:26, :165:18, :167:18, :211:21, :216:16, :219:26
+      automatic logic [7:0]      _memAccessLength_T_1 = 8'h1 << io_instructionIn[13:12];	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:43:32, :343:{27,38}
       instruction <= io_instructionIn;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:47:28
       pc <= io_pcIn;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:48:19
       rs1 <= io_instructionIn[19:15];	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:49:20, :76:26
@@ -711,14 +711,20 @@ module Stage1Register(	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/sc
         _GEN_4 | _GEN | _GEN_0 | _GEN_6
           ? 4'h0
           : _GEN_2
-              ? (_GEN_10 ? {3'h0, io_instructionIn[30]} : _GEN_12)
-              : ~_GEN_3 | _GEN_10 ? 4'h0 : _GEN_12;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:5:7, :44:35, :53:23, :82:19, :98:19, :137:10, :138:{32,58,84,111}, :140:12, :141:40, :143:21, :145:26, :146:18, :148:18, :152:16, :177:40, :179:21
-      isWide <= io_instructionIn[6:2] == 5'h6 | io_instructionIn[6:2] == 5'hE;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:42:32, :54:23, :211:{20,27,42,58}
-      aSel <= _GEN_0 | _GEN_5;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:55:21, :82:19, :98:19, :214:19, :216:12
+              ? (_GEN_10 ? _GEN_11 : _GEN_14)
+              : _GEN_3
+                  ? (_GEN_10 ? 4'h0 : _GEN_14)
+                  : io_instructionIn[6:0] == 7'h1B
+                      ? (_GEN_10 ? 4'h0 : _GEN_15)
+                      : io_instructionIn[6:0] == 7'h3B
+                          ? (_GEN_10 ? _GEN_11 : _GEN_15)
+                          : 4'h0;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:42:32, :53:23, :82:19, :98:19, :137:10, :138:{32,58,84,111}, :140:12, :141:40, :143:21, :145:26, :146:18, :148:18, :152:16, :177:40, :179:21, :181:16, :209:{22,39}, :211:21, :213:16, :216:16, :226:{23,40}, :228:20, :230:26
+      isWide <= io_instructionIn[6:2] == 5'h6 | io_instructionIn[6:2] == 5'hE;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:42:32, :54:23, :250:{20,27,42,58}
+      aSel <= _GEN_0 | _GEN_5;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:55:21, :82:19, :98:19, :253:19, :255:12
       bSel <=
         ~_GEN_2
         & (_GEN_3 | _GEN_4 | _GEN | _GEN_0 | _GEN_8 | _GEN_7 | _GEN_9 | _GEN_1
-           & io_instructionIn[14]);	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:43:32, :56:21, :82:19, :98:19, :113:13, :117:13, :223:8, :224:19, :227:12, :231:12, :235:12, :239:12, :243:12, :247:12, :251:12, :255:12, :259:12, :263:{18,31}
+           & io_instructionIn[14]);	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:43:32, :56:21, :82:19, :98:19, :113:13, :117:13, :262:8, :263:19, :266:12, :270:12, :274:12, :278:12, :282:12, :286:12, :290:12, :294:12, :298:12, :302:{18,31}
       regWEn <= ~(_GEN | _GEN_0) & (~_GEN_1 | (|rd));	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:51:19, :57:23, :81:10, :82:19, :84:14, :87:14, :91:{16,25}
       wbSel <=
         _GEN_2 | _GEN_3
@@ -729,11 +735,11 @@ module Stage1Register(	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/sc
       isBranch <= _GEN_0;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:61:25, :82:19
       isJump <= _GEN_9;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:62:23, :98:19, :113:13, :117:13
       memRWSel <= _GEN;	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:63:25, :82:19
-      memAccessLength <= _memAccessLength_T_1[2:0];	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:64:32, :304:{19,27}
-      memReadMode <= ~(io_instructionIn[14]);	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:43:32, :65:28, :303:{18,25}
+      memAccessLength <= _memAccessLength_T_1[2:0];	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:64:32, :343:{19,27}
+      memReadMode <= ~(io_instructionIn[14]);	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:43:32, :65:28, :342:{18,25}
       csrWEn <=
         io_instructionIn[6:0] == 7'h73
-        & (io_instructionIn[14:12] == 3'h1 | io_instructionIn[14:12] == 3'h5);	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:5:7, :42:32, :43:32, :68:23, :308:{21,38,48,60,69}
+        & (io_instructionIn[14:12] == 3'h1 | io_instructionIn[14:12] == 3'h5);	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:5:7, :42:32, :43:32, :68:23, :347:{21,38,48,60,69}
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// Users/amaroo/Desktop/chisel/rv-three-stage/src/main/scala/Stage1Register.scala:5:7

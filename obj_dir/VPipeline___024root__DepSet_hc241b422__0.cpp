@@ -145,12 +145,12 @@ VL_INLINE_OPT void VPipeline___024root___nba_sequent__TOP__0(VPipeline___024root
     __Vtemp_11[0U] = vlSelfRef.Pipeline__DOT__alu__DOT__v_0;
     __Vtemp_11[1U] = (vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in0 
                       - vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in1);
-    __Vtemp_11[2U] = VL_SHIFTL_III(32,32,6, vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in0, 
-                                   (0x3fU & vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in1));
-    __Vtemp_11[3U] = VL_SHIFTR_III(32,32,6, vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in0, 
-                                   (0x3fU & vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in1));
-    __Vtemp_11[4U] = VL_SHIFTRS_III(32,32,6, vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in0, 
-                                    (0x3fU & vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in1));
+    __Vtemp_11[2U] = (vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in0 
+                      << (0x1fU & vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in1));
+    __Vtemp_11[3U] = (vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in0 
+                      >> (0x1fU & vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in1));
+    __Vtemp_11[4U] = VL_SHIFTRS_III(32,32,5, vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in0, 
+                                    (0x1fU & vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in1));
     __Vtemp_11[5U] = VL_LTS_III(32, vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in0, vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in1);
     __Vtemp_11[6U] = (vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in0 
                       < vlSelfRef.Pipeline__DOT____Vcellinp__alu__io_in1);
@@ -687,14 +687,29 @@ VL_INLINE_OPT void VPipeline___024root___nba_sequent__TOP__0(VPipeline___024root
             = (0U == (7U & (vlSelfRef.Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn 
                             >> 0xcU)));
         vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_11 
-            = (0x87096520U | (((0x40000000U & vlSelfRef.Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn)
-                                ? 4U : 3U) << 0x14U));
+            = (1U & (vlSelfRef.Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn 
+                     >> 0x1eU));
         vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_12 
-            = (0xfU & (vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_11 
+            = ((0x40000000U & vlSelfRef.Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn)
+                ? 4U : 3U);
+        vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_13 
+            = (0x87096520U | ((IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_12) 
+                              << 0x14U));
+        vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_14 
+            = (0xfU & (vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_13 
                        >> (0x1fU & VL_SHIFTL_III(5,32,32, 
                                                  (7U 
                                                   & (vlSelfRef.Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn 
                                                      >> 0xcU)), 2U))));
+        vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_15 
+            = ((1U == (7U & (vlSelfRef.Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn 
+                             >> 0xcU))) ? 2U : ((5U 
+                                                 == 
+                                                 (7U 
+                                                  & (vlSelfRef.Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn 
+                                                     >> 0xcU)))
+                                                 ? (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_12)
+                                                 : 0U));
         vlSelfRef.Pipeline__DOT__stage1Register__DOT__aluSel 
             = (((((IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_4) 
                   | (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN)) 
@@ -702,11 +717,20 @@ VL_INLINE_OPT void VPipeline___024root___nba_sequent__TOP__0(VPipeline___024root
                 | (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_6))
                 ? 0U : ((IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_2)
                          ? ((IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_10)
-                             ? (1U & (vlSelfRef.Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn 
-                                      >> 0x1eU)) : (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_12))
-                         : ((1U & ((~ (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_3)) 
-                                   | (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_10)))
-                             ? 0U : (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_12))));
+                             ? (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_11)
+                             : (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_14))
+                         : ((IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_3)
+                             ? ((IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_10)
+                                 ? 0U : (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_14))
+                             : ((0x1bU == (0x7fU & vlSelfRef.Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn))
+                                 ? ((IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_10)
+                                     ? 0U : (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_15))
+                                 : ((0x3bU == (0x7fU 
+                                               & vlSelfRef.Pipeline__DOT____Vcellinp__stage1Register__io_instructionIn))
+                                     ? ((IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_10)
+                                         ? (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_11)
+                                         : (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_15))
+                                     : 0U)))));
         vlSelfRef.Pipeline__DOT__stage1Register__DOT__aSel 
             = ((IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_0) 
                | (IData)(vlSelfRef.Pipeline__DOT__stage1Register__DOT__unnamedblk1__DOT___GEN_5));
@@ -915,8 +939,10 @@ VL_INLINE_OPT void VPipeline___024root___nba_sequent__TOP__0(VPipeline___024root
                                              & VL_SHIFTL_III(7,7,32, (IData)(vlSelfRef.Pipeline__DOT__stage2Register__DOT__wbSel), 5U))));
     vlSelfRef.Pipeline__DOT___immGen_io_out = (((0x13U 
                                                  == (IData)(Pipeline__DOT__immGen__DOT____VdfgRegularize_h8d16997b_0_2)) 
-                                                | (3U 
-                                                   == (IData)(Pipeline__DOT__immGen__DOT____VdfgRegularize_h8d16997b_0_2)))
+                                                | ((0x1bU 
+                                                    == (IData)(Pipeline__DOT__immGen__DOT____VdfgRegularize_h8d16997b_0_2)) 
+                                                   | (3U 
+                                                      == (IData)(Pipeline__DOT__immGen__DOT____VdfgRegularize_h8d16997b_0_2))))
                                                 ? Pipeline__DOT__immGen__DOT___iTypeImmediate_T_3
                                                 : (
                                                    (0x23U 
@@ -1145,7 +1171,7 @@ void VPipeline___024root___eval(VPipeline___024root* vlSelf) {
 #ifdef VL_DEBUG
             VPipeline___024root___dump_triggers__nba(vlSelf);
 #endif
-            VL_FATAL_MT("generated/Pipeline.sv", 963, "", "NBA region did not converge.");
+            VL_FATAL_MT("generated/Pipeline.sv", 981, "", "NBA region did not converge.");
         }
         __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
         __VnbaContinue = 0U;
@@ -1156,7 +1182,7 @@ void VPipeline___024root___eval(VPipeline___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VPipeline___024root___dump_triggers__act(vlSelf);
 #endif
-                VL_FATAL_MT("generated/Pipeline.sv", 963, "", "Active region did not converge.");
+                VL_FATAL_MT("generated/Pipeline.sv", 981, "", "Active region did not converge.");
             }
             vlSelfRef.__VactIterCount = ((IData)(1U) 
                                          + vlSelfRef.__VactIterCount);

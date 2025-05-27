@@ -206,6 +206,45 @@ class Stage1Register(xlen: Int) extends Module {
         aluSel := 6.U
       }
     }
+  } .elsewhen(opcode === 0b0011011.U) {
+    // i-types (wide)
+    switch (funct3) {
+      is(0b000.U) {
+        aluSel := 0.U
+      }
+      is(0b001.U) {
+        aluSel := 2.U
+      }
+      is(0b101.U) {
+        when (funct7aux) {
+          aluSel := 4.U
+        } otherwise {
+          aluSel := 3.U
+        }
+      }
+    }
+  } .elsewhen (opcode === 0b0111011.U) {
+    // r-types (wide)
+    switch(funct3) {
+      is(0b000.U) {
+        when (funct7aux) {
+          aluSel := 1.U
+        } otherwise {
+          aluSel := 0.U
+        }
+      }
+      is(0b001.U) {
+        aluSel := 2.U
+      }
+      is(0b101.U) {
+        when (funct7aux) {
+          aluSel := 4.U
+        } otherwise {
+          aluSel := 3.U
+        }
+      }
+    }
+
   }
 
   isWide := (opcode(6, 2) === 0b00110.U) | (opcode(6, 2) === 0b01110.U)
