@@ -93,6 +93,7 @@ class Pipeline(xlen: Int, memSize: Int, csrFileSize: Int) extends Module {
   )
 
   alu.io.aluSel := stage1Register.io.aluSel
+  alu.io.isWide := stage1Register.io.isWide
 
 
   // branch comparator inputs

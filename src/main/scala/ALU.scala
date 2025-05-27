@@ -1,4 +1,6 @@
 import chisel3._
+import chisel3.util.MuxCase
+
 import scala.math._
 
 class ALU(xlen: Int) extends Module {
@@ -6,14 +8,34 @@ class ALU(xlen: Int) extends Module {
     val in0 = Input(UInt(xlen.W));
     val in1 = Input(UInt(xlen.W));
     val aluSel = Input(UInt(4.W));
+    val isWide = Input(Bool())
     val out = Output(UInt(xlen.W));
   })
 
-  val add = io.in0 + io.in1;
-  val sub = io.in0 - io.in1;
-  val sll = io.in0 << io.in1((log(xlen) / log(2)).toInt, 0);
-  val srl = io.in0 >> io.in1((log(xlen) / log(2)).toInt, 0);
-  val sra = (io.in0.asSInt >> io.in1((log(xlen) / log(2)).toInt, 0)).asUInt
+  var numShiftBits = (log(xlen) / log(2)).toInt - 1;
+
+  val add = MuxCase(io.in0 + io.in1, Array(
+    (io.isWide) -> (io.in0 + io.in1)(31, 0).asSInt.pad(xlen).asUInt
+    )
+  )
+  val sub = MuxCase(io.in0 - io.in1, Array(
+    (io.isWide) -> (io.in0 - io.in1)(31, 0).asSInt.pad(xlen).asUInt
+    )
+  )
+
+  val sll = MuxCase(io.in0 << io.in1(numShiftBits, 0), Array(
+    (io.isWide) -> (io.in0 << io.in1(4, 0))(31, 0).asSInt.pad(xlen).asUInt
+    )
+  )
+  val srl = MuxCase(io.in0 >> io.in1(numShiftBits, 0), Array(
+    (io.isWide) -> (io.in0 >> io.in1(4, 0))(31, 0).asSInt.pad(xlen).asUInt
+    )
+  )
+  val sra = MuxCase((io.in0.asSInt >> io.in1(numShiftBits, 0)).asUInt, Array(
+    (io.isWide) -> (io.in0.asSInt >> io.in1(4, 0))(31, 0).asSInt.pad(xlen).asUInt
+    )
+  )
+
   val slt = (io.in0.asSInt < io.in1.asSInt).asUInt;
   val sltu = io.in0 < io.in1;
   val or = io.in0 | io.in1;

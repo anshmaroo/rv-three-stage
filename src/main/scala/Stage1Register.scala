@@ -17,6 +17,7 @@ class Stage1Register(xlen: Int) extends Module {
     val immediate = Output(UInt(xlen.W))
 
     val aluSel = Output(UInt(4.W))
+    val isWide = Output(Bool())
     val aSel = Output(Bool())
     val bSel = Output(Bool())
 
@@ -50,6 +51,7 @@ class Stage1Register(xlen: Int) extends Module {
   val rd = RegInit(0.U((5.W)))
   val immediate = RegInit(0.U(xlen.W))
   val aluSel = RegInit(0.U(4.W))
+  val isWide = RegInit(0.U(1.W))
   val aSel = RegInit(0.U(1.W))
   val bSel = RegInit(0.U(1.W))
   val regWEn = RegInit(0.U(1.W))
@@ -206,6 +208,8 @@ class Stage1Register(xlen: Int) extends Module {
     }
   }
 
+  isWide := (opcode(6, 2) === 0b00110.U) | (opcode(6, 2) === 0b01110.U)
+
   aSel := false.B
   switch (opcode) {
     is(0b1100011.U) {
@@ -311,6 +315,7 @@ class Stage1Register(xlen: Int) extends Module {
   io.rd := rd
   io.immediate := immediate
   io.aluSel := aluSel
+  io.isWide := isWide
   io.aSel := aSel
   io.bSel := bSel
   io.regWEn := regWEn

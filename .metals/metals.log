@@ -25,3 +25,14 @@ org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequ
 2025.05.25 13:49:23 INFO  Exiting server
 2025.05.25 13:50:28 INFO  Started: Metals version 1.5.3 in folders '/Users/amaroo/Desktop/chisel/rv-three-stage' for client Visual Studio Code 1.100.0.
 2025.05.25 19:05:27 INFO  Started: Metals version 1.5.3 in folders '/Users/amaroo/Desktop/chisel/rv-three-stage' for client Visual Studio Code 1.100.2.
+2025.05.26 12:39:28 INFO  Shutting down server
+2025.05.26 12:39:28 INFO  shutting down Metals
+2025.05.26 12:39:28 INFO  Exiting server
+2025.05.26 12:39:33 INFO  Started: Metals version 1.5.3 in folders '/Users/amaroo/Desktop/chisel/rv-three-stage' for client Visual Studio Code 1.100.2.
+May 26, 2025 12:39:34 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+May 26, 2025 12:39:34 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2025.05.26 12:39:45 INFO  Shutting down server
+2025.05.26 12:39:45 INFO  shutting down Metals
+2025.05.26 12:39:45 INFO  Exiting server
